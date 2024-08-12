@@ -36,6 +36,11 @@ android {
 }
 
 dependencies {
+    implementation(libs.lottie)
+    implementation(libs.firebase.ui.firestore)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.core)
     implementation(libs.androidx.lifecycle.viewmodel)
     implementation(libs.picasso)
     implementation(libs.retrofit)
