@@ -36,6 +36,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.lifecycle.viewmodel)
     implementation(libs.picasso)
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
