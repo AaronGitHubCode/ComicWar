@@ -17,12 +17,18 @@ import androidx.fragment.app.commit
 
 import androidx.appcompat.app.AppCompatActivity
 
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+
+import kotlinx.coroutines.launch
+
 private const val NOTIFICATION_ID = "_id"
 private const val NOTIFICATION_NAME = "_name"
 
 private const val NOTIFICATION_UUID = 0x010
 
-class MainActivity : AppCompatActivity(), INotificationService {
+class MainActivity : AppCompatActivity(R.layout.main_activity_layout), INotificationService {
     private lateinit var notificationManager: NotificationManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,14 +36,18 @@ class MainActivity : AppCompatActivity(), INotificationService {
 
         onBackPressedDispatcher.addCallback(this) {}
 
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+            }
+        }
+
         notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannel(NotificationChannel(NOTIFICATION_ID, NOTIFICATION_NAME, NotificationManager.IMPORTANCE_DEFAULT))
     }
 
     override fun onStart() {
         super.onStart()
-
-
 
         supportFragmentManager.commit {
             replace(R.id.fragment_container, CollectionFragment())

@@ -9,8 +9,8 @@ import retrofit2.http.Field
 import retrofit2.http.Query
 
 interface ComicService {
-    @GET("comics?apikey=$PUBLIC_API_KEY")
-    fun listAllComicsPerPage(@Query("page") page: Int): Call<List<Comic>>
-    @GET("comics?apikey=$PUBLIC_API_KEY/{comicId}")
-    fun getComicFromId(@Field("comicId") comicId: Int): Call<Comic>
+    @GET("comics?apikey=$PUBLIC_API_KEY&ts=1&hash=bf3d1dde66eb223f37a0cdcffcedba7f")
+    fun listAllComicsWithLimit(@Query("limit") limit: Int): Call<ComicDataContainer>
+    @GET("comics/{comicId}/?apikey=$PUBLIC_API_KEY&ts=1&hash=bf3d1dde66eb223f37a0cdcffcedba7f")
+    fun getRandomComic(@Field("comicId") id: Int = Math.round(Math.random() * 100).toInt())
 }

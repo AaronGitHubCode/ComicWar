@@ -26,7 +26,7 @@ class ComicsPageAdapter(private val comics: List<Comic>) : Adapter<ComicViewHold
 
     override fun onBindViewHolder(holder: ComicViewHolder, position: Int) = holder.root.run {
         val comicPortrait = findViewById<ImageView>(R.id.comic_portrait)
-        Picasso.get().load(comics[position].images[0].path).into(comicPortrait)
+        Picasso.get().load(comics[position].thumbnail.path).into(comicPortrait)
 
         val comicTitle = findViewById<TextView>(R.id.comic_title)
         comicTitle.text = comics[position].title
